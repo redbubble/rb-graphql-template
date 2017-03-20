@@ -35,7 +35,7 @@ To setup for local development, run these steps. Note that most steps assume tha
    [documentation](http://www.oracle.com/technetwork/java/javase/documentation/jdk8-doc-downloads-2133158.html)
    available (handy for linking into your IDE).
 
-1. Run [sbt](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html)::
+1. Run [sbt](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html):
 
     ```
     $ cd app
@@ -223,19 +223,6 @@ Note that when sending to New Relic, we do filter out some metrics that are coll
 metrics (as NR collects these already), as well as tools we don't use (e.g. Zipkin). We also only send the 75th, 95th,
 99th & 99.9th percentiles, along with 1, 5 & 15 minute weighted moving averages (for the appropriate metrics type where
 supported).
-
-# Cache
-
-All GraphQL queries (**not** mutations) are cached in their entirety by an in-memory cache.
-
-You can clear the cache by hitting an admin endpoint:
-
-```
-$ curl  -X POST -u ${BASIC_AUTH_USERNAME}:${BASIC_AUTH_PASSWORD} https://rb-graphql-template/v1/admin/flush_cache
-OK
-```
-
-Note that due to an issue with the way the version of Sangria we're using handles errors, we may sometimes cache errors. If you notice a persistent error in the client, you can clear the cache to see if that resolves things.
 
 # Development Overview
 
