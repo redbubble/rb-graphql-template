@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>../gatling.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <immediateFlush>false</immediateFlush>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <!-- Uncomment for logging ALL HTTP request and responses -->
+    <!--  <logger name="io.gatling.http.ahc" level="TRACE" /> -->
+    <!--  <logger name="io.gatling.http.response" level="TRACE" /> -->
+    <!-- Uncomment for logging ONLY FAILED HTTP request and responses -->
+    <logger name="io.gatling.http.ahc" level="WARN"/>
+    <logger name="io.gatling.http.response" level="WARN"/>
+
+    <logger name="com.twitter.finagle" level="ERROR"/>
+    <logger name="access" level="INFO"/>
+    <logger name="error" level="INFO"/>
+    <logger name="rb-util" level="INFO"/>
+    <logger name="rb-util-test" level="INFO"/>
+    <logger name="rb-graphql-template" level="INFO"/>
+    <!-- Set this to TRACE to see HTTP traffic to downstream services -->
+    <logger name="rb-graphql-template.http" level="INFO"/>
+
+</configuration>

@@ -1,0 +1,6 @@
+# Environment file for running tests in CI in Docker.
+# NOTE. We don't pass the PORT here because we set it in the Dockerfile.
+ENV=test
+ROLLBAR_ACCESS_KEY=fake
+COOKIE_DOMAIN=ios-api.redbubble.com
+NEW_RELIC_LICENSE_KEY=fake

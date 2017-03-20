@@ -1,0 +1,19 @@
+<!-- Details: http://logback.qos.ch/manual/configuration.html -->
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="ERROR">
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <logger name="com.newrelic" level="ERROR"/>
+    <logger name="com.twitter.finagle" level="INFO"/>
+    <logger name="access" level="INFO"/>
+    <logger name="error" level="INFO"/>
+    <logger name="rb-util" level="INFO"/>
+    <logger name="rb-graphql-template" level="INFO"/>
+    <!-- Set this to TRACE to see HTTP traffic to downstream services -->
+    <logger name="rb-graphql-template.http" level="INFO"/>
+</configuration>

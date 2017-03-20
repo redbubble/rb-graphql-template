@@ -1,0 +1,30 @@
+# Misc
+.env
+.history
+*.class
+*.log
+logs/*
+*.DS_Store
+release.properties
+META-INF
+
+# sbt specific
+.cache
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+core/target
+graphql/target
+common/target
+hawk/target
+perf/target
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+.idea

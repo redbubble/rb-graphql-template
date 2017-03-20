@@ -1,0 +1,11 @@
+steps:
+  - name: 'build'
+    command: ./build.sh
+    timeout_in_minutes: 60
+    agents:
+      location: aws
+  - name: test
+    command: ./test.sh
+    timeout_in_minutes: 60
+    agents:
+      location: aws
