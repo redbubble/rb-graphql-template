@@ -1,6 +1,0 @@
-# Local development environment variables, copy this to .env in the project root.
-PORT=8080
-ENV=development
-ROLLBAR_ACCESS_KEY=rollbar-key-here
-COOKIE_DOMAIN=ios-api.redbubble.com
-NEW_RELIC_LICENSE_KEY=new-relic-key-here
