@@ -1,4 +1,4 @@
-package com.redbubble.gql.config
+package com.redbubble.gql.util.config
 
 import com.redbubble.util.spec.SpecHelper
 import org.specs2.mutable.Specification
@@ -42,7 +42,7 @@ final class EnvironmentSpec extends Specification with SpecHelper {
   "Backend URLs" >> {
     "for development" >> {
       "are valid" >> {
-        development.paopleApiUrl must not(beNull)
+        development.peopleApiUrl must not(beNull)
         development.artistsApiUrl must not(beNull)
         development.cartApiUrl must not(beNull)
         development.localesApiUrl must not(beNull)
@@ -54,7 +54,7 @@ final class EnvironmentSpec extends Specification with SpecHelper {
 
     "for test" >> {
       "are valid" >> {
-        test.paopleApiUrl must not(beNull)
+        test.peopleApiUrl must not(beNull)
         test.artistsApiUrl must not(beNull)
         test.cartApiUrl must not(beNull)
         test.localesApiUrl must not(beNull)
@@ -66,7 +66,7 @@ final class EnvironmentSpec extends Specification with SpecHelper {
 
     "for production" >> {
       "are valid" >> {
-        production.paopleApiUrl must not(beNull)
+        production.peopleApiUrl must not(beNull)
         production.artistsApiUrl must not(beNull)
         production.cartApiUrl must not(beNull)
         production.localesApiUrl must not(beNull)

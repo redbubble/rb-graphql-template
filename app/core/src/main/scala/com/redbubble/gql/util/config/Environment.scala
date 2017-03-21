@@ -1,8 +1,8 @@
-package com.redbubble.gql.config
+package com.redbubble.gql.util.config
 
 import java.net.URL
 
-import com.redbubble.gql.config.Environment.canonicalUrl
+import com.redbubble.gql.util.config.Environment.canonicalUrl
 import com.redbubble.util.config.{ConfigUtils, Environment => Env}
 
 object Environment extends ConfigUtils {
@@ -20,11 +20,10 @@ trait StarWarsApiEnvironment {
   protected val starWarsApiBaseUrl: String
 
   // Note. These are lazy as starWarsApiBaseUrl is inherited & these are thus not available when this class is instantiated.
-  lazy val paopleApiUrl: URL = new URL(s"${canonicalUrl(starWarsApiBaseUrl)}/api/people/")
+  lazy val peopleApiUrl: URL = new URL(s"${canonicalUrl(starWarsApiBaseUrl)}/api/people/")
 }
 
-trait GqlEnvironment extends Env
-    with StarWarsApiEnvironment
+trait GqlEnvironment extends Env with StarWarsApiEnvironment
 
 case object Development extends GqlEnvironment {
   override val name = "development"

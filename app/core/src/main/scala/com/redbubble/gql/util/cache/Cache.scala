@@ -1,6 +1,6 @@
-package com.redbubble.gql.cache
+package com.redbubble.gql.util.cache
 
-import com.redbubble.gql.config.Config
+import com.redbubble.gql.util.config.Config
 import com.redbubble.gql.util.async.executorService
 import com.redbubble.gql.util.metrics.Metrics.serverMetrics
 import com.redbubble.util.cache.MemoryCache

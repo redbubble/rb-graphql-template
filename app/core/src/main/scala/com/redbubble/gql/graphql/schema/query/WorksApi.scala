@@ -15,7 +15,7 @@ trait WorksApi {
     description = Some("Details of a work."),
     resolve = ctx => {
       val locale = localeForCodes(ctx.arg(CountryCodeArg), ctx.arg(CurrencyCodeArg), ctx.arg(LanguageCodeArg))
-      ctx.ctx.workDetails(ctx.arg(WorkIdArg), locale).asScala
+      ctx.ctx.peopleDetails(ctx.arg(WorkIdArg), locale).asScala
     }
   )
 

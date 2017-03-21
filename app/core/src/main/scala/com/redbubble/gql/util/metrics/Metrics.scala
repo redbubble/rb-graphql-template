@@ -1,6 +1,6 @@
 package com.redbubble.gql.util.metrics
 
-import com.redbubble.gql.config.Config
+import com.redbubble.gql.util.config.Config
 import com.redbubble.util.metrics.StatsReceiver
 
 trait Metrics {

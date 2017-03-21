@@ -3,7 +3,7 @@ package com.redbubble.gql.util
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors._
 
-import com.redbubble.gql.config.Config
+import com.redbubble.gql.util.config.Config
 import com.redbubble.util.async.AsyncOps._
 import com.twitter.util.FuturePool
 

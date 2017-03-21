@@ -1,4 +1,4 @@
-package com.redbubble.gql.backends.artists
+package com.redbubble.gql.backends.people
 
 import java.net.URL
 
@@ -10,7 +10,7 @@ import com.redbubble.util.json.DecoderOps._
 import com.redbubble.util.json.syntax._
 import io.circe.Decoder
 
-trait ArtistDecoders {
+trait PersonDecoders {
   val artistDecoder: Decoder[Artist] = Decoder.instance { c =>
     for {
       id <- c.downField("id").as[Option[Int]].map(_.map(i => Id(i.toString)))
@@ -21,7 +21,7 @@ trait ArtistDecoders {
     } yield Artist(id, username, name, avatar, location)
   }
 
-  val artistDataDecoder: Decoder[Seq[Artist]] = Decoder.instance { c =>
+  val artistDecoder: Decoder[Seq[Artist]] = Decoder.instance { c =>
     for {
       works <- c.downField("data").as[Seq[Artist]](artistDecoder.seqDecoder)
     } yield works
@@ -34,4 +34,4 @@ trait ArtistDecoders {
   }
 }
 
-object ArtistDecoders extends ArtistDecoders
+object PersonDecoders extends PersonDecoders

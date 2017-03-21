@@ -35,7 +35,7 @@ import scala.collection.JavaConverters._
   * A `com.twitter.finagle.stats.StatsReceiver` instance that bridges Finagle Stats' metrics to Dropwizard Metrics.
   *
   * This classes essentially configures itself as a `StatsReceiver`, and sends all metrics to Dropwizard Metrics,
-  * which in turn are sent to New Relic (using `com.redbubble.gql.metrics.newrelic.`).
+  * which in turn are sent to New Relic (using `com.redbubble.gql.util.metrics.newrelic.`).
   *
   * See `com.twitter.finagle.stats.DefaultStatsReceiver` for details on how this is done at runtime (basically, it
   * loads classes defined in `resources/META-INF/services`).

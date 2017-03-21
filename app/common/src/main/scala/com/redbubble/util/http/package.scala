@@ -1,8 +1,8 @@
 package com.redbubble.util
 
+import com.twitter.util.Future
 import shapeless.tag
 import shapeless.tag.@@
-import com.twitter.util.Future
 
 trait QueryParamTag
 

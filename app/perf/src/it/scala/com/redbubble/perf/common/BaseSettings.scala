@@ -1,7 +1,7 @@
 package com.redbubble.perf.common
 
 import com.redbubble.hawk.params.ContentType
-import com.redbubble.gql.config.Config.apiAuthenticationCredentials
+import com.redbubble.gql.util.config.Config.apiAuthenticationCredentials
 import com.redbubble.perf.common.HawkSignatureCalculator.signatureCalculator
 import com.redbubble.perf.common.TestEnvironment._
 import io.gatling.core.Predef._

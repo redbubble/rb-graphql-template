@@ -16,7 +16,7 @@ import com.twitter.finagle.service.{Backoff, RetryBudget, ResponseClassifier => 
   *
   * Note that we also set a top-level timeout for incoming requests to the server (i.e. the maximum amount of time the
   * server is allowed to spend handling the incoming request), so all these values here must fit inside that.
-  * See [[com.redbubble.gql.config.Config.requestTimeout]] for details.
+  * See [[com.redbubble.gql.util.config.Config.requestTimeout]] for details.
   */
 trait ClientOps {
   /**

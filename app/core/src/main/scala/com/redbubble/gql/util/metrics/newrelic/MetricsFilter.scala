@@ -1,4 +1,4 @@
-package com.redbubble.gql.metrics.newrelic
+package com.redbubble.gql.util.metrics.newrelic
 
 import com.codahale.metrics.{Metric, MetricFilter}
 

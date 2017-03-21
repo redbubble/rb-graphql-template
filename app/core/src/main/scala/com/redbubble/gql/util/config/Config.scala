@@ -1,4 +1,4 @@
-package com.redbubble.gql.config
+package com.redbubble.gql.util.config
 
 import com.redbubble.hawk.validate.{Credentials, Sha256}
 import com.redbubble.hawk.{Key, KeyId}

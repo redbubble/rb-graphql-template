@@ -3,8 +3,8 @@ package com.redbubble.gql
 import com.redbubble.gql.api.v1
 import com.redbubble.gql.api.v1.GqlErrorHandler.apiErrorHandler
 import com.redbubble.gql.api.v1.{GqlErrorHandler, ResponseEncoders}
-import com.redbubble.gql.config.Config._
-import com.redbubble.gql.config.{Development, Environment, Test}
+import com.redbubble.gql.util.config.Config._
+import com.redbubble.gql.util.config.{Development, Environment, Test}
 import com.redbubble.gql.util.metrics.Metrics._
 import com.redbubble.hawk.HawkAuthenticateRequestFilter
 import com.redbubble.util.http.ExceptionFilter

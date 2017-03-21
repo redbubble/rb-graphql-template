@@ -1,4 +1,4 @@
-package com.redbubble.gql.metrics.newrelic
+package com.redbubble.gql.util.metrics.newrelic
 
 import java.util.concurrent.TimeUnit
 

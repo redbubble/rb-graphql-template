@@ -1,8 +1,8 @@
 package com.redbubble.gql
 
-import com.redbubble.gql.config.Config
-import com.redbubble.gql.config.Environment.env
-import com.redbubble.gql.metrics.newrelic.NewRelicMetrics
+import com.redbubble.gql.util.config.Config
+import com.redbubble.gql.util.config.Environment.env
+import com.redbubble.gql.util.metrics.newrelic.NewRelicMetrics
 import com.redbubble.gql.util.error.GqlErrorReporter.errorReporter
 import com.redbubble.gql.util.log.CoreLogger
 import com.redbubble.gql.util.log.CoreLogger._

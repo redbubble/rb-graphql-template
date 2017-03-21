@@ -1,8 +1,8 @@
 package com.redbubble.gql.util.error
 
-import com.redbubble.gql.config.Config.rollbarAccessKey
-import com.redbubble.gql.config.Environment.env
-import com.redbubble.gql.config.{Environment, Production}
+import com.redbubble.gql.util.config.Config.rollbarAccessKey
+import com.redbubble.gql.util.config.Environment.env
+import com.redbubble.gql.util.config.{Environment, Production}
 import com.redbubble.gql.util.async.futurePool
 import com.redbubble.util.config.Environment
 import com.redbubble.util.error._
@@ -25,7 +25,7 @@ private final class GqlErrorReporter(
 
   private def reportLevel(t: Throwable): Option[ErrorLevel] = t match {
     // An example of not logging a 404 from a downstream service.
-    case e @ DownstreamError(_, i) if e.getMessage.contains("Resource Not Found") && i.requestUrl.startsWith(env.paopleApiUrl.toString) =>
+    case e @ DownstreamError(_, i) if e.getMessage.contains("Resource Not Found") && i.requestUrl.startsWith(env.peopleApiUrl.toString) =>
       Some(Debug)
     // We don't care about individual request timeouts to downstream services, as these are usually intermittent.
     case _: IndividualRequestTimeoutException =>

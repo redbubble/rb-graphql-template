@@ -4,7 +4,7 @@ import com.newrelic.api.agent.NewRelic
 import com.redbubble.graphql.GraphQlEndpoint._
 import com.redbubble.graphql._
 import com.redbubble.gql.api.v1.graphql.GraphQlRequestDecoders._
-import com.redbubble.gql.cache.Cache._
+import com.redbubble.gql.util.cache.Cache._
 import com.redbubble.gql.graphql.GqlGraphQlQueryExecutor._
 import com.redbubble.gql.util.async.globalAsyncExecutionContext
 import com.redbubble.gql.util.log.CoreLogger

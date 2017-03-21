@@ -1,6 +1,6 @@
 package com.redbubble.gql.util.log
 
-import com.redbubble.gql.config.Config
+import com.redbubble.gql.util.config.Config
 import com.redbubble.gql.util.async.futurePool
 import com.redbubble.util.log.Logger
 
