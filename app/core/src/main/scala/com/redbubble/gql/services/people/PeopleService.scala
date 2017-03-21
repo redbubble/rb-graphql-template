@@ -8,7 +8,7 @@ trait PeopleService {
   private implicit lazy val fetchRunner = com.redbubble.gql.util.fetch.runner
 
   final def allPeople(): Future[Seq[Person]] = {
-    val fetch = allPeopleFetch()
+    val fetch = allPeopleFetch
     fetch.runF
   }
 

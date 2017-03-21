@@ -4,7 +4,7 @@ import com.redbubble.gql.services.people.{Person, PersonId}
 import fetch.Fetch
 
 object PeopleFetcher {
-  def allPeopleFetch(): Fetch[Seq[Person]] = {
+  val allPeopleFetch: Fetch[Seq[Person]] = {
     val id = ()
     Fetch(id)(PeopleDataSource)
   }
