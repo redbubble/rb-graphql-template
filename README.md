@@ -1,6 +1,6 @@
 # GraphQL Template API
 
-This is a service template for a GraphQL-based API. It is a small stateless HTTP API that aggregates, proxies and transforms downstream APIs. In particular, this exposes a subset of the [Star Wars API](https://swapi.co).
+This is a service template for a GraphQL-based API. It is a small stateless HTTP API that aggregates, proxies and transforms downstream APIs. In particular, this template exposes a subset of the [Star Wars API](https://swapi.co).
 
 It aims to provide a simple, consistent, beginner- to intermediate-level stack, aimed at getting a small HTTP-based service up & running quickly with some things we care about in a production system, including:
 
@@ -18,6 +18,20 @@ This template uses other open source code from Redbubble:
 
 * [finch-sangria](https://github.com/redbubble/finch-sangria) - A simple wrapper for using Sangria from within Finch;
 * [finagle-hawk](https://github.com/redbubble/finagle-hawk) - HTTP Holder-Of-Key Authentication Scheme for Finagle.
+
+## Architecture
+
+The architecture of the app is essentially composed vertically, representing a request's flow through the system. Each layer basically only talks to its adjacent layers.
+
+For simplicity of the template (i.e. you may not really do this), the top-level packages are grouped into their functional areas, and are as follows:
+
+* `api` - The HTTP API that we expose to clients. Decodes incoming JSON GraphQL queries & sends them to be executed. Also handles caching at a query-level.
+* `graphql` - The data that is exposed, via GraphQL to a client. Basically these should only do marshalling to & from GraphQL
+  to a service.
+* `services` - High level business logic; compose fetches to produce a result & also run the fetches. Usually expose a cleaner API than the underlying backend or fetcher.
+* `fetch` - Understand how to fetch data from backend datasources. Includes lower level caching of fetched data.
+* `backends` - Clients for talking to backend or downstream services. Expose an API that directly mirrors the backend they talk to.
+* `util` - Any other code that doesn't fall neatly into one of the above functional buckets.
 
 # API
 
@@ -122,6 +136,8 @@ Appending a `~` to the start of any sbt command will run it continuously; for ex
 ```
 
 # Performance Testing
+
+*Note. There are incompatibilities with Gatling & the Netty that Finagle uses at present, the performance tests may not work. If you want to use them, the recommendation is to move back down to Scala 2.11 (for all deps) and use that Gatling version.*
 
 Performance testing uses [Gattling](http://gatling.io/), and live in the `perf/src/it` directory. You can run
 all performance tests using the following:

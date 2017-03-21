@@ -7,7 +7,7 @@ import com.twitter.finagle.http.service.HttpResponseClassifier.ServerErrorsAsFai
 import com.twitter.finagle.service.{Backoff, RetryBudget, ResponseClassifier => FinagleResponseClassifier}
 
 /**
-  * Configures a HTTP client for our use within the iOS API.
+  * Configures a HTTP client for our use within the Redbubble GraphQL Template API.
   *
   * For more information:
   * - Pooling - https://twitter.github.io/finagle/guide/Clients.html#pooling
@@ -38,7 +38,7 @@ trait ClientOps {
     * - We disable fail fast, as we are currently only talking to a single server (or LB), see
     * http://twitter.github.io/finagle/guide/Clients.html#client-fail-fast for more details.
     * - We set some sensible (think so?) defaults for the nummber of connections, and waiters.
-    * - Knowing that we'll have iOS apps (users) on the end of a connection, and given we are server->server, we set
+    * - Knowing that we'll have users on the end of a connection, and given we are server->server, we set
     * some low thresholds on acquisition and total request times. We assume the retries take care of intermittent
     * load on these downstream services.
     * - We up the TCP connection timeout to 2 seconds, to cater for a delay in acquiring connections to the monolith

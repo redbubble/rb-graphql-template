@@ -2,7 +2,7 @@ package com.redbubble.util.http
 
 import com.twitter.finagle.http.Status.NotFound
 
-// TODO TJA This is a cats.Monoid, replace it with that. Looks like we might need a Semigroup[T], and then pass the
+// TODO This is a cats.Monoid, replace it with that. Looks like we might need a Semigroup[T], and then pass the
 // monoid down into handle404AsEmpty.
 trait Empty[T] {
   def empty: T

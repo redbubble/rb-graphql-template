@@ -75,7 +75,7 @@ final class MetricsStatsReceiver extends FinagleStatsReceiver {
     // have no way, here, of knowing).
     override def remove() = {
       metrics.remove(formatMetricNames(names))
-      // TODO TJA Fix this to remove up to MaxDedupes.
+      // TODO Fix this to remove up to MaxDedupes.
       metrics.remove(formatMetricNames(names :+ deduplicatedName))
       ()
     }

@@ -247,7 +247,7 @@ shellPrompt in ThisBuild := { state =>
 // Note. We aggregate coverage as a separate command in CI, see https://github.com/scoverage/sbt-scoverage#multi-project-reports
 val ciCommands = List(
   "clean",
-  // TODO TJA Re-enable this https://trello.com/c/gXPMtkt3
+  // TODO Re-enable this https://trello.com/c/gXPMtkt3
   //  "scalastyle",
   //  "test:scalastyle",
   "compile",

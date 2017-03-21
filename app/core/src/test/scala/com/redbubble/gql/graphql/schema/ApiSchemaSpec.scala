@@ -1,12 +1,11 @@
 package com.redbubble.gql.graphql.schema
 
-import com.redbubble.graphql.{GraphQlResult, SuccessfulGraphQlResult}
+import com.redbubble.graphql.SuccessfulGraphQlResult
 import com.redbubble.util.spec.SpecHelper
 import org.specs2.mutable.Specification
 
 final class ApiSchemaSpec extends Specification with SpecHelper with QueryHelper {
-
-  val introspectionQuery =
+  private val introspectionQuery =
     """
       |query IntrospectionQuery {
       |  __schema {
@@ -95,7 +94,7 @@ final class ApiSchemaSpec extends Specification with SpecHelper with QueryHelper
       |}
     """.stripMargin
 
-  "The iOS API" >> {
+  "The Redbubble GraphQL Template API" >> {
     "can be introspected" >> {
       val result = testQuery(introspectionQuery)
       result must beAnInstanceOf[SuccessfulGraphQlResult]

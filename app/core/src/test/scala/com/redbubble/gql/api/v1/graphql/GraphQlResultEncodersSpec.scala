@@ -1,7 +1,7 @@
 package com.redbubble.gql.api.v1.graphql
 
 import com.redbubble.graphql.SuccessfulGraphQlResult
-import com.redbubble.gql.util.spec.ModelGenerators
+import com.redbubble.gql.util.spec.GqlGenerators$
 import com.redbubble.util.http.ResponseOps
 import com.redbubble.util.spec.SpecHelper
 import io.circe.Json
@@ -10,7 +10,7 @@ import org.scalacheck.Prop._
 import org.scalacheck.Properties
 import org.specs2.mutable.Specification
 
-final class GraphQlResultEncodersSpec extends Specification with SpecHelper with ModelGenerators {
+final class GraphQlResultEncodersSpec extends Specification with SpecHelper with GqlGenerators {
   implicit val resultEncoder = GraphQlEncoders.graphQlResultEncoder
 
   val encodeResultProp = new Properties("GraphQlResult JSON encoding") {

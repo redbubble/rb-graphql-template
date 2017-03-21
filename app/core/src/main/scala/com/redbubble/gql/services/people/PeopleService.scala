@@ -1,20 +1,19 @@
 package com.redbubble.gql.services.people
 
-import com.redbubble.gql.fetch.products.ProductsFetcher.productDetailsFetch
 import com.redbubble.gql.fetch.people.PeopleFetcher._
-import com.redbubble.gql.product.FeaturedProducts.filterFeatured
-import com.redbubble.gql.product.SupportedProduct._
-import com.redbubble.gql.product._
-import com.redbubble.gql.services.locale.Locale
-import com.redbubble.gql.services.product._
 import com.redbubble.util.fetch.syntax._
 import com.twitter.util.Future
 
 trait PeopleService {
   private implicit lazy val fetchRunner = com.redbubble.gql.util.fetch.runner
 
-  final def peopleDetails(personId: PersonId): Future[Option[Work]] = {
-    val fetch = workFetch(personId)
+  final def allPeople(): Future[Seq[Person]] = {
+    val fetch = allPeopleFetch()
+    fetch.runF
+  }
+
+  final def personDetails(personId: PersonId): Future[Option[Person]] = {
+    val fetch = personFetch(personId)
     fetch.runF
   }
 }

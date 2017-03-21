@@ -1,37 +1,23 @@
 package com.redbubble.gql.backends.people
 
-import java.net.URL
-
-import com.redbubble.gql.backends.works.WorksDecoders._
-import com.redbubble.gql.core.Id
-import com.redbubble.gql.product.Work
-import com.redbubble.gql.services.artists._
-import com.redbubble.util.json.DecoderOps._
+import com.redbubble.gql.services.people.{BirthYear, HairColour, Name, Person}
 import com.redbubble.util.json.syntax._
 import io.circe.Decoder
 
-trait PersonDecoders {
-  val artistDecoder: Decoder[Artist] = Decoder.instance { c =>
+trait PeopleDecoders {
+  val personDecoder: Decoder[Person] = Decoder.instance { c =>
     for {
-      id <- c.downField("id").as[Option[Int]].map(_.map(i => Id(i.toString)))
-      username <- c.downField("username").as[String].map(Username)
-      name <- c.downField("name").as[String].map(ArtistName)
-      avatar <- c.downField("avatar").as[URL](urlDecoder)
-      location <- c.downField("location").as[Option[String]].map(_.map(Location))
-    } yield Artist(id, username, name, avatar, location)
+      name <- c.downField("name").as[String].map(Name)
+      birthYear <- c.downField("birth_year").as[String].map(BirthYear)
+      hairColour <- c.downField("hair_color").as[String].map(HairColour)
+    } yield Person(name, birthYear, hairColour)
   }
 
-  val artistDecoder: Decoder[Seq[Artist]] = Decoder.instance { c =>
+  val peopleDecoder: Decoder[Seq[Person]] = Decoder.instance { c =>
     for {
-      works <- c.downField("data").as[Seq[Artist]](artistDecoder.seqDecoder)
-    } yield works
-  }
-
-  val artistWorksDataDecoder: Decoder[Seq[Work]] = Decoder.instance { c =>
-    for {
-      works <- c.downField("data").as[Seq[Work]](workDecoder.seqDecoder)
-    } yield works
+      people <- c.downField("results").as[Seq[Person]](personDecoder.seqDecoder)
+    } yield people
   }
 }
 
-object PersonDecoders extends PersonDecoders
+object PeopleDecoders extends PeopleDecoders
