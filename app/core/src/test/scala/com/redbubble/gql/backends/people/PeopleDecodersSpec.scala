@@ -12,7 +12,7 @@ final class PeopleDecodersSpec extends Specification with SpecHelper with GqlGen
     property("decoding a single person") = forAll(genPerson) { (person: Person) =>
       val json = personJson(person)
       val decoded = decode(json)(PeopleDecoders.personDecoder)
-      decoded must beRight(Seq(person))
+      decoded must beRight(person)
     }
 
     property("decoding a list of people") = forAll(genPerson) { (person: Person) =>

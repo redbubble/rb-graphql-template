@@ -9,7 +9,7 @@ final class PeopleApiSpec extends Specification with SpecHelper with QueryHelper
   private val allPeopleQuery: String =
     s"""
        |{
-       |  allPeople() {
+       |  allPeople {
        |    $personFields
        |  }
        |}
