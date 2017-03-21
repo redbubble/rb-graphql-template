@@ -14,10 +14,10 @@ lazy val circeVersion = "0.7.0"
 lazy val catsVersion = "0.9.0"
 lazy val mouseVersion = "0.6"
 // The version numbers for Finagle, Twitter, Finch & Catbird *must* work together. See the Finch build.sbt for known good versions.
-lazy val finagleVersion = "6.43.0"
-lazy val twitterServerVersion = "1.28.0"
+lazy val finagleVersion = "6.42.0"
+lazy val twitterServerVersion = "1.27.0"
 lazy val finchVersion = "0.13.1"
-lazy val catBirdVersion = "0.13.0"
+lazy val catBirdVersion = "0.12.0"
 lazy val sangriaVersion = "1.1.0"
 lazy val sangriaCirceVersion = "1.0.1"
 //lazy val featherbedVersion = "0.2.1-SNAPSHOT"
@@ -247,7 +247,7 @@ shellPrompt in ThisBuild := { state =>
 // Note. We aggregate coverage as a separate command in CI, see https://github.com/scoverage/sbt-scoverage#multi-project-reports
 val ciCommands = List(
   "clean",
-  // TODO Re-enable this https://trello.com/c/gXPMtkt3
+  // TODO Re-enable this.
   //  "scalastyle",
   //  "test:scalastyle",
   "compile",

@@ -1,6 +1,5 @@
 package com.redbubble.gql.backends.people
 
-import com.redbubble.gql.backends.people.PeopleDecoders
 import com.redbubble.gql.services.people.Person
 import com.redbubble.gql.util.spec.GqlGenerators
 import com.redbubble.util.spec.SpecHelper

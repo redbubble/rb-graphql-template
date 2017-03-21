@@ -43,36 +43,18 @@ final class EnvironmentSpec extends Specification with SpecHelper {
     "for development" >> {
       "are valid" >> {
         development.peopleApiUrl must not(beNull)
-        development.artistsApiUrl must not(beNull)
-        development.cartApiUrl must not(beNull)
-        development.localesApiUrl must not(beNull)
-        development.searchApiUrl must not(beNull)
-        development.collectionsApiUrl must not(beNull)
-        development.deliveryDatesApiUrl must not(beNull)
       }
     }
 
     "for test" >> {
       "are valid" >> {
         test.peopleApiUrl must not(beNull)
-        test.artistsApiUrl must not(beNull)
-        test.cartApiUrl must not(beNull)
-        test.localesApiUrl must not(beNull)
-        test.searchApiUrl must not(beNull)
-        test.collectionsApiUrl must not(beNull)
-        test.deliveryDatesApiUrl must not(beNull)
       }
     }
 
     "for production" >> {
       "are valid" >> {
         production.peopleApiUrl must not(beNull)
-        production.artistsApiUrl must not(beNull)
-        production.cartApiUrl must not(beNull)
-        production.localesApiUrl must not(beNull)
-        production.searchApiUrl must not(beNull)
-        production.collectionsApiUrl must not(beNull)
-        production.deliveryDatesApiUrl must not(beNull)
       }
     }
   }

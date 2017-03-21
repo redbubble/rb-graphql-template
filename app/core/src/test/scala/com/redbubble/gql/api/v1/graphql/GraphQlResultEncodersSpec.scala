@@ -1,7 +1,7 @@
 package com.redbubble.gql.api.v1.graphql
 
 import com.redbubble.graphql.SuccessfulGraphQlResult
-import com.redbubble.gql.util.spec.GqlGenerators$
+import com.redbubble.gql.util.spec.{GqlGenerators, GqlGenerators$}
 import com.redbubble.util.http.ResponseOps
 import com.redbubble.util.spec.SpecHelper
 import io.circe.Json
