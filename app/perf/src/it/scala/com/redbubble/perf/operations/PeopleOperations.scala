@@ -2,7 +2,7 @@ package com.redbubble.perf.operations
 
 import com.redbubble.gql.services.people.PersonId
 import com.redbubble.perf.common.Graphql._
-import com.redbubble.perf.queries.ProductQueries._
+import com.redbubble.perf.queries.PeopleQueries._
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 

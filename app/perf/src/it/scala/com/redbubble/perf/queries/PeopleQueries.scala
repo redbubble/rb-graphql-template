@@ -2,7 +2,7 @@ package com.redbubble.perf.queries
 
 import com.redbubble.gql.services.people.PersonId
 
-trait ProductQueries {
+trait PeopleQueries {
   val allPeopleQuery: String =
     s"""
        |{
@@ -26,4 +26,4 @@ trait ProductQueries {
      """.stripMargin
 }
 
-object ProductQueries extends ProductQueries
+object PeopleQueries extends PeopleQueries
