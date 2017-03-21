@@ -1,24 +1,19 @@
 package com.redbubble.perf.scenarios
 
-import com.redbubble.gql.services.product._
+import com.redbubble.gql.services.people.PersonId
 import com.redbubble.perf.common.BaseSettings._
-import com.redbubble.perf.operations.{DeviceRegistrationOperations, FeedOperations, ProductOperations}
-import com.redbubble.perf.queries.FeedQueries._
+import com.redbubble.perf.operations.PeopleOperations
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ScenarioBuilder
 
 import scala.concurrent.duration._
 
 // Warms up the remote server. Run this to warm the caches and the JVMs; or to get a baseline for a non-loaded server.
-final class Warmup extends Simulation with ProductOperations with FeedOperations with DeviceRegistrationOperations {
+final class Warmup extends Simulation with PeopleOperations {
   val scn: ScenarioBuilder = scenario("Warmup")
-      .exec(registerDevice)
+      .exec(allPeople())
       .pause(1.seconds)
-      .exec(faturedFeeds)
-      .pause(1.seconds)
-      .exec(feed(foundFeedCode))
-      .pause(1.seconds)
-      .exec(availableProducts(WorkId("21461273")))
+      .exec(personDetails(PersonId(25)))
       .pause(1.seconds)
 
   setUp(

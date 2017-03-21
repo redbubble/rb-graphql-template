@@ -13,7 +13,7 @@ private case object LocalTestEnvironment extends TestEnvironment {
 }
 
 private case object ProductionTestEnvironment extends TestEnvironment {
-  override val host = "https://rb-graphql-template.redbubble.com"
+  override val host = "https://rb-graphql-template.com"
 }
 
 object TestEnvironment {

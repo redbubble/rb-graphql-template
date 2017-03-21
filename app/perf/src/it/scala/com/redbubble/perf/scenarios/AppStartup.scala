@@ -1,18 +1,18 @@
 package com.redbubble.perf.scenarios
 
+import com.redbubble.gql.services.people.PersonId
 import com.redbubble.perf.common.BaseSettings._
-import com.redbubble.perf.operations.{DeviceRegistrationOperations, FeedOperations}
-import com.redbubble.perf.queries.FeedQueries._
+import com.redbubble.perf.operations.PeopleOperations
 import io.gatling.core.Predef._
+import io.gatling.core.structure.ScenarioBuilder
 
 import scala.concurrent.duration._
 
-final class AppStartup extends Simulation with FeedOperations with DeviceRegistrationOperations {
-  val scn = scenario("App Startup")
-      .exec(registerDevice)
-      .exec(faturedFeeds)
+final class AppStartup extends Simulation with PeopleOperations {
+  val scn: ScenarioBuilder = scenario("App Startup")
+      .exec(allPeople())
       .pause(1.seconds)
-      .exec(feed(foundFeedCode))
+      .exec(personDetails(PersonId(25)))
       .pause(1.seconds)
 
   setUp(
