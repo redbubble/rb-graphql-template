@@ -6,9 +6,9 @@
 set -o pipefail
 
 declare -r sbt_release_version="0.13.13"
-declare -r sbt_unreleased_version="0.13.13"
+declare -r sbt_unreleased_version="0.13.14-RC1"
 
-declare -r latest_212="2.12.0"
+declare -r latest_212="2.12.1"
 declare -r latest_211="2.11.8"
 declare -r latest_210="2.10.6"
 declare -r latest_29="2.9.3"
@@ -358,7 +358,7 @@ process_args () {
   }
   while [[ $# -gt 0 ]]; do
     case "$1" in
-          -h|-help) usage; exit 1 ;;
+          -h|-help) usage; exit 0 ;;
                 -v) verbose=true && shift ;;
                 -d) addSbt "--debug" && shift ;;
                 -w) addSbt "--warn"  && shift ;;
@@ -371,7 +371,7 @@ process_args () {
          -sbt-boot) require_arg path "$1" "$2" && addJava "-Dsbt.boot.directory=$2" && shift 2 ;;
           -sbt-dir) require_arg path "$1" "$2" && sbt_dir="$2" && shift 2 ;;
         -debug-inc) addJava "-Dxsbt.inc.debug=true" && shift ;;
-          -offline) addSbt "set offline := true" && shift ;;
+          -offline) addSbt "set offline in Global := true" && shift ;;
         -jvm-debug) require_arg port "$1" "$2" && addDebugger "$2" && shift 2 ;;
             -batch) batch=true && shift ;;
            -prompt) require_arg "expr" "$1" "$2" && setThisBuild shellPrompt "(s => { val e = Project.extract(s) ; $2 })" && shift 2 ;;
