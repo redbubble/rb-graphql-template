@@ -7,33 +7,34 @@ import sbt.Keys._
 lazy val buildSettings = Seq(
   organization := "com.redbubble",
   version := "0.0.1-SNAPSHOT",
-  scalaVersion := "2.12.1"
+  scalaVersion := "2.12.2"
 )
 
-lazy val circeVersion = "0.7.0"
+lazy val circeVersion = "0.8.0"
 lazy val catsVersion = "0.9.0"
-lazy val mouseVersion = "0.6"
+lazy val mouseVersion = "0.7"
 // The version numbers for Finagle, Twitter, Finch & Catbird *must* work together. See the Finch build.sbt for known good versions.
-lazy val finagleVersion = "6.42.0"
-lazy val twitterServerVersion = "1.27.0"
-lazy val finchVersion = "0.13.1"
-lazy val catBirdVersion = "0.12.0"
-lazy val sangriaVersion = "1.1.0"
-lazy val sangriaCirceVersion = "1.0.1"
-//lazy val featherbedVersion = "0.2.1-SNAPSHOT"
-lazy val logbackVersion = "1.2.2"
+lazy val finagleVersion = "6.44.0"
+lazy val finagleHttpAuthVersion = "0.1.0"
+lazy val twitterServerVersion = "1.29.0"
+lazy val finchVersion = "0.14.1"
+lazy val catBirdVersion = "0.14.0"
+lazy val sangriaVersion = "1.2.1"
+lazy val sangriaCirceVersion = "1.1.0"
+lazy val featherbedVersion = "0.3.1"
+lazy val logbackVersion = "1.2.3"
 lazy val specsVersion = "3.8.9"
-lazy val jodaTimeVersion = "2.9.7"
+lazy val jodaTimeVersion = "2.9.9"
 lazy val jodaConvertVersion = "1.8.1"
 lazy val scalaCacheVersion = "0.9.3"
 lazy val scalaUriVersion = "0.4.16"
-lazy val fetchVersion = "0.5.0"
+lazy val fetchVersion = "0.6.1"
 lazy val slf4jVersion = "1.7.25"
-lazy val rollbarVersion = "0.5.3"
+lazy val rollbarVersion = "0.5.4"
 lazy val scalaJava8CompatVersion = "0.8.0"
-lazy val gattlingVersion = "2.2.4"
-lazy val nrVersion = "3.36.0"
-lazy val metricsVersion = "3.2.1"
+lazy val gattlingVersion = "2.2.5"
+lazy val nrVersion = "3.38.0"
+lazy val metricsVersion = "3.2.2"
 lazy val metricsNewRelicVersion = "1.1.1"
 
 lazy val cats = "org.typelevel" %% "cats-core" % catsVersion
@@ -44,16 +45,14 @@ lazy val circeParser = "io.circe" %% "circe-parser" % circeVersion
 lazy val mouse = "com.github.benhutchison" %% "mouse" % mouseVersion
 lazy val finagleHttp = "com.twitter" %% "finagle-http" % finagleVersion
 lazy val finagleStats = "com.twitter" %% "finagle-stats" % finagleVersion
+lazy val finagleHttpAuth = "com.github.finagle" %% "finagle-http-auth" % finagleHttpAuthVersion
 lazy val finchCore = "com.github.finagle" %% "finch-core" % finchVersion
 lazy val finchCirce = "com.github.finagle" %% "finch-circe" % finchVersion
 lazy val catBird = "io.catbird" %% "catbird-finagle" % catBirdVersion
 lazy val scalaUri = "com.netaporter" %% "scala-uri" % scalaUriVersion
 lazy val fetch = "com.47deg" %% "fetch" % fetchVersion
-
-// Featherbed hasn't yet updated for 2.12 (PR submitted)
-//lazy val featherbedCore = ("io.github.finagle" % "featherbed-core_2.11" % featherbedVersion).excludeAll(ExclusionRule())
-//lazy val featherbedCirce = ("io.github.finagle" % "featherbed-circe_2.11" % featherbedVersion).excludeAll(ExclusionRule())
-
+lazy val featherbedCore = "io.github.finagle" %% "featherbed-core" % featherbedVersion
+lazy val featherbedCirce = "io.github.finagle" %% "featherbed-circe" % featherbedVersion
 lazy val metricsCore = "io.dropwizard.metrics" % "metrics-core" % metricsVersion
 lazy val metricsNewRelic = "com.palominolabs.metrics" % "metrics-new-relic" % metricsNewRelicVersion
 lazy val scalacacheCaffeine = "com.github.cb372" %% "scalacache-caffeine" % scalaCacheVersion
@@ -118,8 +117,8 @@ lazy val commonDependencies = Seq(
   catBird,
   scalaUri,
   fetch,
-  //featherbedCore,
-  //featherbedCirce,
+  featherbedCore,
+  featherbedCirce,
   metricsCore,
   metricsNewRelic,
   scalacacheCaffeine,
@@ -156,8 +155,8 @@ lazy val coreDependencies = Seq(
   catBird,
   scalaUri,
   fetch,
-  //featherbedCore,
-  //featherbedCirce,
+  featherbedCore,
+  featherbedCirce,
   newRelic
 )
 
