@@ -10,7 +10,7 @@ import com.redbubble.util.log.Logger
 import com.redbubble.util.metrics.StatsReceiver
 
 object GqlJsonApiClient {
-  private val userAgent = "Redbubble GraphQL Template"
+  private val userAgent = "Redbubble-GraphQL-Template"
   private val logger = new Logger(s"${Config.coreLoggerName}.http")(futurePool)
 
   def client(baseUrl: URL)(implicit statsReceiver: StatsReceiver): JsonApiClient =

@@ -13,17 +13,17 @@ final class StatsCounter(cacheId: String, statsReceiver: StatsReceiver) extends 
   private var evictionCount: Long = 0
   private var evictionWeight: Long = 0
 
-  // sanitise the cache name
   private val stats = statsReceiver.scope(cacheId)
   private val hitsCounter = stats.counter("hits")
   private val missesCounter = stats.counter("misses")
-  //noinspection ScalaUnusedSymbol
-  private val hitMissRatioGauge = stats.addGauge("hit_miss_ratio")(hitCount.toFloat / (hitCount + missCount).toFloat)
   private val evictionsCounter = stats.counter("evictions")
   private val evictionsWeightCounter = stats.counter("evictions_weight")
   private val loadsSuccessCounter = stats.counter("loads", "success")
   private val loadFailureCounter = stats.counter("loads", "failure")
   private val loadTimeStat = stats.stat("load_time")
+
+  stats.provideGauge("hit_miss_ratio")(hitCount.toFloat / (hitCount.toFloat + missCount.toFloat))
+  stats.provideGauge("miss_hit_ratio")(missCount.toFloat / (hitCount.toFloat + missCount.toFloat))
 
   override def snapshot(): CacheStats =
     new CacheStats(

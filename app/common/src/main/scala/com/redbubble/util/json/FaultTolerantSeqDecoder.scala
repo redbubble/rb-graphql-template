@@ -19,7 +19,8 @@ final class FaultTolerantSeqDecoder[A, C[_]](
 
     if (current.succeeded) {
       val builder = cbf.apply
-      var failed: DecodingFailure = null
+      // Note. This is never updated in the fault tolerant version of this code, but is in the original Circe source. Kept here to make future updates easier.
+      val failed: DecodingFailure = null
 
       while (failed.eq(null) && current.succeeded) {
         decodeA(current.asInstanceOf[HCursor]) match {

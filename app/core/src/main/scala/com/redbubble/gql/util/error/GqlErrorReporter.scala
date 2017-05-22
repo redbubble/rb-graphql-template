@@ -1,14 +1,13 @@
 package com.redbubble.gql.util.error
 
+import com.redbubble.gql.util.async.futurePool
 import com.redbubble.gql.util.config.Config.rollbarAccessKey
 import com.redbubble.gql.util.config.Environment.env
 import com.redbubble.gql.util.config.{Environment, Production}
-import com.redbubble.gql.util.async.futurePool
 import com.redbubble.util.config.Environment
 import com.redbubble.util.error._
 import com.redbubble.util.http.DownstreamError
 import com.twitter.finagle.{ChannelClosedException, IndividualRequestTimeoutException}
-import com.twitter.finagle.http.Status.InternalServerError
 import com.twitter.util.FuturePool
 
 private final class GqlErrorReporter(

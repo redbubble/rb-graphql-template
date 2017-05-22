@@ -24,7 +24,6 @@
 package com.redbubble.util.metrics
 
 import com.codahale.metrics.{Gauge => DwGauge, Metric => DwMetric, MetricFilter => DwMetricFilter, MetricRegistry => DwMetricsRegistry}
-import com.redbubble.util.http.Errors
 import com.redbubble.util.http.Errors.error
 import com.redbubble.util.metrics.MetricsStatsReceiver._
 import com.twitter.finagle.stats.{Counter => FinagleCounter, Gauge => FinagleGauge, Stat => FinagleStat, StatsReceiver => FinagleStatsReceiver}

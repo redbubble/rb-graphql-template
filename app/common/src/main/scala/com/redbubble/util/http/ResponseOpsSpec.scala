@@ -7,7 +7,6 @@ import io.circe.{Encoder, JsonObject}
 import org.scalacheck.Prop.forAll
 import org.scalacheck.{Gen, Properties}
 import org.specs2.mutable.Specification
-import com.redbubble.util.io.BufOps._
 
 final class ResponseOpsSpec extends Specification with SpecHelper {
 

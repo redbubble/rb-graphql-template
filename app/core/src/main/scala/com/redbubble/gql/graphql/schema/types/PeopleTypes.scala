@@ -13,7 +13,7 @@ object PeopleTypes {
   // Person Id
   //
 
-  private implicit val personIdInput = new ScalarToInput[PersonId]
+  implicit val personIdInput = new ScalarToInput[PersonId]
 
   private case object PersonIdCoercionViolation extends ValueCoercionViolation(s"Person ID expected.")
 
