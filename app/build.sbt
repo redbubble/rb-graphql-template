@@ -1,71 +1,56 @@
 import com.gilt.sbt.newrelic.NewRelic.autoImport._
 import com.typesafe.sbt.packager.archetypes.JavaAppPackaging
+import sbt.{ExclusionRule, Resolver}
 //import JavaAppPackaging.autoImport._
 import sbt.Keys._
 //import scoverage._
 
 lazy val buildSettings = Seq(
   organization := "com.redbubble",
-  scalaVersion := "2.12.2"
+  scalaVersion := "2.12.3"
 )
 
+lazy val finagleHawkVersion = "0.2.1"
+lazy val finchSangriaVersion = "0.3.1"
+lazy val rbScalaUtilsVersion = "0.1.1"
 lazy val circeVersion = "0.8.0"
 lazy val catsVersion = "0.9.0"
-lazy val mouseVersion = "0.7"
+lazy val mouseVersion = "0.9"
 // The version numbers for Finagle, Twitter, Finch & Catbird *must* work together. See the Finch build.sbt for known good versions.
-lazy val finagleVersion = "6.44.0"
+lazy val finagleVersion = "6.45.0"
 lazy val finagleHttpAuthVersion = "0.1.0"
-lazy val twitterServerVersion = "1.29.0"
-lazy val finchVersion = "0.14.1"
-lazy val catBirdVersion = "0.14.0"
-lazy val sangriaVersion = "1.2.1"
+lazy val twitterServerVersion = "1.30.0"
+lazy val finchVersion = "0.15.1"
+lazy val sangriaVersion = "1.2.2"
 lazy val sangriaCirceVersion = "1.1.0"
 lazy val featherbedVersion = "0.3.1"
-lazy val logbackVersion = "1.2.3"
-lazy val specsVersion = "3.8.9"
-lazy val jodaTimeVersion = "2.9.9"
-lazy val jodaConvertVersion = "1.8.1"
-lazy val scalaCacheVersion = "0.9.3"
+lazy val specsVersion = "3.9.4"
+lazy val scalaCacheVersion = "0.9.4"
 lazy val scalaUriVersion = "0.4.16"
-lazy val fetchVersion = "0.6.1"
+lazy val fetchVersion = "0.6.2"
 lazy val slf4jVersion = "1.7.25"
-lazy val rollbarVersion = "0.5.4"
-lazy val scalaJava8CompatVersion = "0.8.0"
 lazy val gattlingVersion = "2.2.5"
-lazy val nrVersion = "3.38.0"
-lazy val metricsVersion = "3.2.2"
-lazy val metricsNewRelicVersion = "1.1.1"
+lazy val nrVersion = "3.40.0"
 
+lazy val finagleHawk = "com.redbubble" %% "finagle-hawk" % finagleHawkVersion
+lazy val finchSangria = "com.redbubble" %% "finch-sangria" % finchSangriaVersion
+lazy val rbScalaUtils = "com.redbubble" %% "rb-scala-utils" % rbScalaUtilsVersion
 lazy val cats = "org.typelevel" %% "cats-core" % catsVersion
-lazy val scalaJava8Compat = "org.scala-lang.modules" %% "scala-java8-compat" % scalaJava8CompatVersion
 lazy val circeCore = "io.circe" %% "circe-core" % circeVersion
-lazy val circeGeneric = "io.circe" %% "circe-generic" % circeVersion
-lazy val circeParser = "io.circe" %% "circe-parser" % circeVersion
 lazy val mouse = "com.github.benhutchison" %% "mouse" % mouseVersion
 lazy val finagleHttp = "com.twitter" %% "finagle-http" % finagleVersion
 lazy val finagleStats = "com.twitter" %% "finagle-stats" % finagleVersion
 lazy val finagleHttpAuth = "com.github.finagle" %% "finagle-http-auth" % finagleHttpAuthVersion
+lazy val twitterServer = "com.twitter" %% "twitter-server" % twitterServerVersion
 lazy val finchCore = "com.github.finagle" %% "finch-core" % finchVersion
 lazy val finchCirce = "com.github.finagle" %% "finch-circe" % finchVersion
-lazy val catBird = "io.catbird" %% "catbird-finagle" % catBirdVersion
 lazy val scalaUri = "com.netaporter" %% "scala-uri" % scalaUriVersion
 lazy val fetch = "com.47deg" %% "fetch" % fetchVersion
 lazy val featherbedCore = "io.github.finagle" %% "featherbed-core" % featherbedVersion
 lazy val featherbedCirce = "io.github.finagle" %% "featherbed-circe" % featherbedVersion
-lazy val metricsCore = "io.dropwizard.metrics" % "metrics-core" % metricsVersion
-lazy val metricsNewRelic = "com.palominolabs.metrics" % "metrics-new-relic" % metricsNewRelicVersion
-lazy val scalacacheCaffeine = "com.github.cb372" %% "scalacache-caffeine" % scalaCacheVersion
-lazy val logbackCore = "ch.qos.logback" % "logback-core" % logbackVersion
-lazy val logbackClassic = "ch.qos.logback" % "logback-classic" % logbackVersion
-lazy val slf4jApi = "org.slf4j" % "slf4j-api" % slf4jVersion
-lazy val slf4jJul = "org.slf4j" % "jul-to-slf4j" % slf4jVersion
-lazy val rollbar = "com.rollbar" % "rollbar" % rollbarVersion
-lazy val jodaTime = "joda-time" % "joda-time" % jodaTimeVersion
-lazy val jodaConvert = "org.joda" % "joda-convert" % jodaConvertVersion
 lazy val sangria = "org.sangria-graphql" %% "sangria" % sangriaVersion
-lazy val sangriaRelay = "org.sangria-graphql" %% "sangria-relay" % sangriaVersion
 lazy val sangriaCirce = "org.sangria-graphql" %% "sangria-circe" % sangriaCirceVersion
-lazy val twitterServer = "com.twitter" %% "twitter-server" % twitterServerVersion
+lazy val sangriaRelay = "org.sangria-graphql" %% "sangria-relay" % sangriaVersion
 lazy val newRelic = "com.newrelic.agent.java" % "newrelic-api" % nrVersion
 lazy val gattlingHighCharts = ("io.gatling.highcharts" % "gatling-charts-highcharts" % gattlingVersion % "it,test")
     .excludeAll(ExclusionRule("org.scala-lang.modules", "scala-xml_2.11"))
@@ -100,58 +85,22 @@ lazy val compilerOptions = Seq(
   "-Ypartial-unification"
 )
 
-lazy val commonDependencies = Seq(
-  scalaJava8Compat,
+lazy val apiDependencies = Seq(
+  finagleHawk,
+  finchSangria,
+  rbScalaUtils,
   cats,
-  circeCore,
-  circeGeneric,
-  circeParser,
-  jodaTime,
-  jodaConvert,
   mouse,
+  circeCore,
+  twitterServer,
   finagleHttp,
+  finagleHttpAuth,
   finagleStats,
-  finchCore,
-  finchCirce,
-  catBird,
-  scalaUri,
-  fetch,
-  featherbedCore,
-  featherbedCirce,
-  metricsCore,
-  metricsNewRelic,
-  scalacacheCaffeine,
-  logbackCore,
-  logbackClassic,
-  slf4jApi,
-  slf4jJul,
-  rollbar
-)
-
-lazy val hawkDependencies = Seq(
-  finagleHttp,
-  finagleStats,
-  cats,
-  jodaTime,
-  jodaConvert,
-  mouse
-)
-
-lazy val graphQlDependencies = Seq(
   finchCore,
   finchCirce,
   sangria,
+  sangriaCirce,
   sangriaRelay,
-  sangriaCirce
-)
-
-lazy val coreDependencies = Seq(
-  twitterServer,
-  finagleHttp,
-  finagleStats,
-  finchCore,
-  finchCirce,
-  catBird,
   scalaUri,
   fetch,
   featherbedCore,
@@ -175,7 +124,9 @@ lazy val baseSettings = Seq(
     Resolver.jcenterRepo,
     Resolver.sonatypeRepo("releases"),
     Resolver.sonatypeRepo("snapshots"),
-    "Twitter" at "http://maven.twttr.com"
+    "Twitter" at "http://maven.twttr.com",
+    Resolver.url("bintray-sbt-plugin-releases", url("http://dl.bintray.com/content/sbt/sbt-plugin-releases"))(Resolver.ivyStylePatterns),
+    Resolver.bintrayRepo("redbubble", "open-source")
   ),
   scalacOptions ++= compilerOptions,
   scalacOptions in Test ++= Seq("-Yrangepos"),
@@ -183,60 +134,42 @@ lazy val baseSettings = Seq(
   testOptions in Test += Tests.Setup(() => System.setProperty("ENV", "test"))
 )
 
-lazy val commonSettings = buildSettings ++ baseSettings ++ Seq(
-  libraryDependencies ++= (commonDependencies ++ testDependencies)
+lazy val apiSettings = buildSettings ++ baseSettings ++ Seq(
+  libraryDependencies ++= apiDependencies
 )
-lazy val hawkSettings = buildSettings ++ baseSettings ++ Seq(
-  libraryDependencies ++= hawkDependencies
-)
-lazy val graphqlSettings = buildSettings ++ baseSettings ++ Seq(
-  libraryDependencies ++= graphQlDependencies
-)
-lazy val coreSettings = buildSettings ++ baseSettings ++ Seq(
-  libraryDependencies ++= coreDependencies
-)
+
 lazy val perfSettings = buildSettings ++ baseSettings ++ Defaults.itSettings ++ Seq(
   libraryDependencies ++= perfDependencies
 )
+
 lazy val graphqlTemplateSettings = buildSettings ++ baseSettings ++ Seq(
-  libraryDependencies ++= coreDependencies,
+  name := "rb-graphql-template",
+  moduleName := "rb-graphql-template",
+  libraryDependencies ++= apiDependencies,
   mainClass in Compile := Some("com.redbubble.gql.App"),
   aggregate in run := false,
   aggregate in reStart := false,
   coverageMinimum := 25.0,
   coverageFailOnMinimum := true,
-  coverageExcludedPackages := "com\\.redbubble\\.util\\.spec\\.*",
+  coverageExcludedPackages := "com\\.redbubble\\.graphql\\.util\\.spec\\.*",
   newrelicAppName := "GraphQL Template",
   newrelicVersion := nrVersion,
   newrelicCustomTracing := true,
   newrelicIncludeApi := true
 )
 
-lazy val common = (project in file("common"))
-    .settings(commonSettings)
-lazy val hawk = (project in file("hawk"))
-    .settings(hawkSettings)
-    .dependsOn(common % "test->test;compile->compile")
-lazy val graphql = (project in file("graphql"))
-    .settings(graphqlSettings)
-    .dependsOn(common % "test->test;compile->compile")
-lazy val core = (project in file("core"))
-    .settings(coreSettings)
-    .dependsOn(common % "test->test;compile->compile")
-    .dependsOn(hawk % "test->test;compile->compile")
-    .dependsOn(graphql % "test->test;compile->compile")
+lazy val api = (project in file("api"))
+    .settings(apiSettings)
 lazy val perf = (project in file("perf"))
     .settings(perfSettings)
     .configs(IntegrationTest)
-    .dependsOn(core % "test->test;compile->compile")
+    .dependsOn(api % "test->test;compile->compile")
     .enablePlugins(GatlingPlugin)
-lazy val api = project.in(file("."))
-    .settings(name := "rb-graphql-template", moduleName := "rb-graphql-template")
+lazy val graphqlTemplate = project.in(file("."))
     .settings(graphqlTemplateSettings)
-    .aggregate(common, hawk, graphql, core, perf)
-    .dependsOn(common, hawk, graphql, core, perf)
-    .enablePlugins(JavaAppPackaging)
-    .enablePlugins(NewRelic)
+    .aggregate(api, perf)
+    .dependsOn(api, perf)
+    .enablePlugins(JavaAppPackaging, NewRelic)
 
 shellPrompt in ThisBuild := { state =>
   s"${scala.Console.MAGENTA}${Project.extract(state).currentRef.project}> ${scala.Console.RESET}"

@@ -1,3 +1,5 @@
+[![Build status](https://img.shields.io/travis/redbubble/rb-graphql-template/master.svg)](https://travis-ci.org/redbubble/rb-graphql-template)
+
 # GraphQL Template API
 
 This is a service template for a GraphQL-based API. It is a small stateless HTTP API that aggregates, proxies and transforms downstream APIs. In particular, this template exposes a subset of the [Star Wars API](https://swapi.co).
@@ -16,8 +18,12 @@ It aims to provide a simple, consistent, beginner- to intermediate-level stack, 
 
 This template uses other open source code from Redbubble:
 
+* [rb-scala-utils](https://github.com/redbubble/rb-scala-utils) - Miscellaneous utilities (common code) for building
+  Scala-based services, using Finch (on which this project depends).
 * [finch-sangria](https://github.com/redbubble/finch-sangria) - A simple wrapper for using Sangria from within Finch;
 * [finagle-hawk](https://github.com/redbubble/finagle-hawk) - HTTP Holder-Of-Key Authentication Scheme for Finagle.
+
+Redbubble also makes available a purely [HTTP version of this template](https://github.com/redbubble/finch-template) (on which this is based).
 
 ## Architecture
 
@@ -26,7 +32,7 @@ The architecture of the app is essentially composed vertically, representing a r
 For simplicity of the template (i.e. you may not really do this), the top-level packages are grouped into their functional areas, and are as follows:
 
 * `api` - The HTTP API that we expose to clients. Decodes incoming JSON GraphQL queries & sends them to be executed. Also handles caching at a query-level.
-* `graphql` - The data that is exposed, via GraphQL to a client. Basically these should only do marshalling to & from GraphQL
+* `graphql` - The data that is exposed, via GraphQL to a client. Basically these should only do marshalling to & from GraphQL. As these are exposed to clients, we call the classes that make up this layer `API`s.
   to a service.
 * `services` - High level business logic; compose fetches to produce a result & also run the fetches. Usually expose a cleaner API than the underlying backend or fetcher.
 * `fetch` - Understand how to fetch data from backend datasources. Includes lower level caching of fetched data.
@@ -37,8 +43,7 @@ For simplicity of the template (i.e. you may not really do this), the top-level 
 
 The API uses GraphQL. GraphiQL, an interactive browser, is available locally (though not in production): http://localhost:8080/v1/explore
 
-There is also simple [API documentation](./app/API.md) available. Where possible, prefer the GraphiQL online documentation as
-it will be up to date.
+There is also simple [API documentation](./app/API.md) available. Where possible, prefer the GraphiQL online documentation as it will be up to date.
 
 # Setup
 
