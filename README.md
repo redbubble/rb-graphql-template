@@ -93,7 +93,7 @@ $ ./sbt run
 You can also use [Revolver](https://github.com/spray/sbt-revolver) for restarts when code changes (recommended!):
 
 ```
-$ ./sbt ~re-start
+$ ./sbt ~reStart
 ```
 
 To run using the Heroku tools (requires deployment setup as above), i.e. like it's run in production:
